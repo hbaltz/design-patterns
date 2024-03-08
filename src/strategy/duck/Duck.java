@@ -17,10 +17,6 @@ public abstract class Duck {
      */
     protected QuackBehavior quackBehavior;
 
-    public Duck() {
-
-    }
-
     /**
      * How the duck is displayed, should print a description of the duck
      */
@@ -30,8 +26,16 @@ public abstract class Duck {
         flyBehavior.fly();
     }
 
+    public void setFlyBehavior(FlyBehavior flyBehavior) {
+        this.flyBehavior = flyBehavior;
+    }
+
     public void performQuack() {
         quackBehavior.quack();
+    }
+
+    public void setQuackBehavior(QuackBehavior quackBehavior) {
+        this.quackBehavior = quackBehavior;
     }
 
     /**
