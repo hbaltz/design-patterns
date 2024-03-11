@@ -1,7 +1,7 @@
 package strategy.duck;
 
-import strategy.duck.behavior.fly.FlyBehavior;
-import strategy.duck.behavior.quack.QuackBehavior;
+import strategy.duck.behavior.fly.IFlyBehavior;
+import strategy.duck.behavior.quack.IQuackBehavior;
 
 /**
  * Modeled a duck
@@ -11,11 +11,11 @@ public abstract class Duck {
     /**
      * Encapsulate the fly behavior
      */
-    protected FlyBehavior flyBehavior;
+    protected IFlyBehavior flyBehavior;
     /**
      * Encapsulate the quack behavior
      */
-    protected QuackBehavior quackBehavior;
+    protected IQuackBehavior quackBehavior;
 
     /**
      * How the duck is displayed, should print a description of the duck
@@ -26,7 +26,7 @@ public abstract class Duck {
         flyBehavior.fly();
     }
 
-    public void setFlyBehavior(FlyBehavior flyBehavior) {
+    public void setFlyBehavior(IFlyBehavior flyBehavior) {
         this.flyBehavior = flyBehavior;
     }
 
@@ -34,7 +34,7 @@ public abstract class Duck {
         quackBehavior.quack();
     }
 
-    public void setQuackBehavior(QuackBehavior quackBehavior) {
+    public void setQuackBehavior(IQuackBehavior quackBehavior) {
         this.quackBehavior = quackBehavior;
     }
 
