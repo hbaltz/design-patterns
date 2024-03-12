@@ -4,6 +4,7 @@ In this directory, I create examples of design pattern implementations, initiall
 ## Summary
 
 * [Strategy pattern](./src/strategy/README.MD)
+* [Observer pattern](./src/observer/README.md)
 
 ## References
 
