@@ -54,7 +54,7 @@ public class WeatherData implements ISubject {
      *
      * a nice improvement could be to have a ISubject for each measurement
      * another to only call measurementsChanged when the values actually change (next value <> current value)
-     * but for the example, we wiil keep that simple
+     * but for the example, we will keep that simple
      * @param temperature in degree celsius
      * @param humidity in percent of humidity in the air
      * @param pressure in mbar
