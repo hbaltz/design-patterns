@@ -109,7 +109,7 @@ classDiagram
 ```
 
 In this example :
-* `Subject` and `Observer` are similar to the interface define int the observer patter uml diagram
+* `Subject` and `Observer` are similar to the interfaces define in the observer pattern uml diagram
 * `DisplayElement` is an addition in this example that is not related to the observer pattern, it was just cleaner to implement it this way in our example
 * `WeatherData` implements the interface `Subject`. `WeatherData` get the different measurements, and when these measurements change it notify the observers `Observer` that are subscribed to it.
 * `CurrentConditionsDisplay`, `StaticsDisplay` and `ForecastDisplay` want to display on their own way the weather measurements. That's why they both implements the interfaces `DisplayElement` and `Observer`, the fist one to display the element and the second to be able to subscribe to a WeatherData and be notified whenever the measurements change.
