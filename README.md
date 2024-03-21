@@ -7,6 +7,7 @@ In this directory, I create examples of design pattern implementations, initiall
 * [Observer pattern](./src/observer/README.md)
 * [Decorator pattern](./src/decorator/README.md)
 * [Factory method pattern](./src/factory/README.md)
+* [Abstract factory pattern](./src/abstract_factory/README.md)
 
 ## References
 
