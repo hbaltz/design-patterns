@@ -93,23 +93,23 @@ classDiagram
         + prepare() void
     }
 
-    class Dough
-    <<interface>> Dough
+    class IDough
+    <<interface>> IDough
     class ThinCrustDough
     class ThickCrustDough
 
-    class Sauce
-    <<interface>> Sauce
+    class ISauce
+    <<interface>> ISauce
     class MarinaraSauce
     class PlumTomatoSauce
     
-    class Cheese
-    <<interface>> Cheese
+    class ICheese
+    <<interface>> ICheese
     class ReggianoCheese
     class MozzarellaCheese
     
-    class Pepperoni
-    <<interface>> Pepperoni
+    class IPepperoni
+    <<interface>> IPepperoni
     class BasicPepperoni
     class HotPepperoni
 
@@ -118,17 +118,17 @@ classDiagram
     IPizzaIngredientFactory <|-- NYPizzaIngredientFactory
     IPizzaIngredientFactory <|-- ChicagoPizzaIngredientFactory
 
-    ThinCrustDough --|> Dough
-    ThickCrustDough --|> Dough
+    ThinCrustDough --|> IDough
+    ThickCrustDough --|> IDough
 
-    MarinaraSauce --|> Sauce
-    PlumTomatoSauce --|> Sauce
+    MarinaraSauce --|> ISauce
+    PlumTomatoSauce --|> ISauce
 
-    ReggianoCheese --|> Cheese
-    MozzarellaCheese --|> Cheese
+    ReggianoCheese --|> ICheese
+    MozzarellaCheese --|> ICheese
     
-    BasicPepperoni --|> Pepperoni
-    HotPepperoni --|> Pepperoni
+    BasicPepperoni --|> IPepperoni
+    HotPepperoni --|> IPepperoni
 
     NYPizzaIngredientFactory ..> ThinCrustDough : create
     NYPizzaIngredientFactory ..> MarinaraSauce : create
@@ -147,7 +147,7 @@ In this example :
 * `Pizza` is the `Client`.
 * `IPizzaIngredientFactory` is the `AbstractFactory`.
 * `NYPizzaIngredientFactory` and `ChicagoPizzaIngredientFactory` are the `concrete factories`.
-* `Dough`, `Sauce`, `Cheese` and `Pepperoni` pizzas are the `concrete products`.
+* `IDough`, `ISauce`, `ICheese` and `IPepperoni` pizzas are the `concrete products`.
 * `ThinCrustDough`, `ThickCrustDough`, `MarinaraSauce`, `PlumTomatoSauce`, `ReggianoCheese`, `MozzarellaCheese`, `BasicPepperoni` and `HotPepperoni` are the `concrete products`.
 
 We have each `products` (dough/sauce/cheese/pepperoni) are well implemented in the different variant (NY style/ chicago style).
