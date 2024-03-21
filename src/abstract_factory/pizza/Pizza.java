@@ -1,28 +1,26 @@
 package abstract_factory.pizza;
 
-import java.util.ArrayList;
+import abstract_factory.ingredient.cheese.ICheese;
+import abstract_factory.ingredient.dough.IDough;
+import abstract_factory.ingredient.pepperoni.IPepperoni;
+import abstract_factory.ingredient.sauce.ISauce;
+import abstract_factory.ingredient.veggie.IVeggie;
 
 /**
  * Modeled a pizza
  */
 public abstract class Pizza {
     protected String name;
-    protected String dough;
-    protected String sauce;
-    protected ArrayList<String> toppingList = new ArrayList<>();
+    protected IDough dough;
+    protected ISauce sauce;
+    protected IVeggie veggies[];
+    protected ICheese cheese;
+    protected IPepperoni pepperoni;
 
     /**
      * Specific preparation method
      */
-    public void prepare() {
-        System.out.println("Preparing: " + name);
-        System.out.println("Tossing " + dough + "...");
-        System.out.println("Adding " + sauce + "...");
-        System.out.println("Adding toppings: ");
-        for(String topping : toppingList) {
-            System.out.println("*  " + topping);
-        }
-    }
+    abstract public void prepare();
 
     /**
      * Specific bake method
@@ -43,5 +41,49 @@ public abstract class Pizza {
      */
     public void box() {
         System.out.println("Place pizza in official PizzaStore box");
+    }
+
+    /**
+     * @return the name of the pizza
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the new name of the pizza
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Display a description of the pizza
+     */
+    public void displayDescription() {
+        System.out.println("Pizza: " + name);
+        if (dough != null) {
+           System.out.println("Dough: " + dough.getType());
+           System.out.println("Dough thickness: " + dough.getThickness() + "inch");
+        }
+
+        if (sauce != null) {
+            System.out.println("Sauce: " + sauce.getName() + ", " + sauce.getType());
+        }
+
+        if (veggies != null && veggies.length != 0) {
+            System.out.println("Veggies list: ");
+            for (IVeggie veggie : veggies) {
+                System.out.println("*  " + veggie.getName());
+            }
+        }
+
+        if(pepperoni != null) {
+            System.out.println("Pepperoni: " + pepperoni.getName());
+        }
+
+        if(cheese != null) {
+            System.out.println("Cheese :" + cheese.getName());
+        }
     }
 }
