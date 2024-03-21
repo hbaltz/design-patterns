@@ -1,4 +1,4 @@
-# Factory pattern
+# Factory method pattern
 
 ## Definition
 
