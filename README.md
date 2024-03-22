@@ -8,6 +8,7 @@ In this directory, I create examples of design pattern implementations, initiall
 * [Decorator pattern](./src/decorator/README.md)
 * [Factory method pattern](./src/factory/README.md)
 * [Abstract factory pattern](./src/abstract_factory/README.md)
+* [Singleton pattern](./src/singleton/README.md)
 
 ## References
 
