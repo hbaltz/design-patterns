@@ -61,7 +61,7 @@ public class RemoteControl {
     /**
      * Undo the last action
      */
-    public void undoButtonPushed() {
+    public void onUndoButtonPushed() {
         undoCommand.undo();
     }
 

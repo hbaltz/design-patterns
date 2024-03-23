@@ -1,5 +1,6 @@
 package command;
 
+import command.macro_command.MacroCommand;
 import command.remote_control.RemoteControl;
 import command.remote_controlled_object.ceiling_fan.CeilingFan;
 import command.remote_controlled_object.ceiling_fan.command.CeilingFanOffCommand;
@@ -49,12 +50,38 @@ public class RemoteControlTest {
         StereoOffCommand livingRoomStereoOffCommand = new StereoOffCommand(livingRoomStereo);
         remoteControl.setCommand(4, livingRoomStereoOnWithCDCommand, livingRoomStereoOffCommand);
 
+        // Slot 5 => All lights
+        MacroCommand allLightsOnCommand = new MacroCommand(
+                new ICommand[]{livingRoomLightOnCommand, kitchenLightOnCommand}
+        );
+        MacroCommand allLightsOffCommand = new MacroCommand(
+                new ICommand[]{livingRoomLightOffCommand, kitchenLightOffCommand}
+        );
+        remoteControl.setCommand(5, allLightsOnCommand, allLightsOffCommand);
+
+        // Slot 6 => Living room complete control
+        MacroCommand livingRoomOnCommand = new MacroCommand(
+            new ICommand[] {
+                livingRoomLightOnCommand,
+                livingRoomCeilingFanOnCommand,
+                livingRoomStereoOnWithCDCommand
+            }
+        );
+        MacroCommand livingRoomOffCommand = new MacroCommand(
+                new ICommand[] {
+                        livingRoomLightOffCommand,
+                        livingRoomCeilingFanOffCommand,
+                        livingRoomStereoOffCommand
+                }
+        );
+        remoteControl.setCommand(6, livingRoomOnCommand, livingRoomOffCommand);
+
         System.out.println(remoteControl);
 
         remoteControl.onButtonWasPushed(0);
         remoteControl.offButtonWasPushed(0);
 
-        remoteControl.undoButtonPushed();
+        remoteControl.onUndoButtonPushed();
 
         remoteControl.onButtonWasPushed(1);
         remoteControl.offButtonWasPushed(1);
@@ -64,5 +91,11 @@ public class RemoteControlTest {
         remoteControl.offButtonWasPushed(3);
         remoteControl.onButtonWasPushed(4);
         remoteControl.offButtonWasPushed(4);
+
+        remoteControl.onButtonWasPushed(5);
+        remoteControl.offButtonWasPushed(5);
+
+        remoteControl.onButtonWasPushed(6);
+        remoteControl.onUndoButtonPushed();
     }
 }
