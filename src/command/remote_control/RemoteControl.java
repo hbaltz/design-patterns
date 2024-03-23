@@ -9,6 +9,7 @@ import command.no_command.NoCommand;
 public class RemoteControl {
     private final ICommand[] onCommandList;
     private final ICommand[]  offCommandList;
+    private ICommand undoCommand;
 
     public RemoteControl() {
         onCommandList = new ICommand[7];
@@ -20,6 +21,9 @@ public class RemoteControl {
             onCommandList[i] = noCommand;
             offCommandList[i] = noCommand;
         }
+
+        // Just like the other slots undo starts off with a NOCommand
+        undoCommand = noCommand;
     }
 
     /**
@@ -42,6 +46,7 @@ public class RemoteControl {
         // We should create a exception class specific to this case to avoid duplicate code
         // To keep the example simple, we won't do it hera
         onCommandList[slotNumber].execute();
+        undoCommand = onCommandList[slotNumber];
     }
 
     /**
@@ -50,6 +55,14 @@ public class RemoteControl {
     public void offButtonWasPushed(int slotNumber) {
         // Same command that on onButtonWasPushed
         offCommandList[slotNumber].execute();
+        undoCommand = offCommandList[slotNumber];
+    }
+
+    /**
+     * Undo the last action
+     */
+    public void undoButtonPushed() {
+        undoCommand.undo();
     }
 
     public String toString() {

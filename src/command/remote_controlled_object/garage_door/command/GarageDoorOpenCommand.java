@@ -13,12 +13,10 @@ public class GarageDoorOpenCommand implements ICommand {
     @Override
     public void execute() {
         garageDoor.up();
-        garageDoor.lightOn();
     }
 
     @Override
     public void undo() {
-        garageDoor.lightOff();
         garageDoor.down();
     }
 }

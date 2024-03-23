@@ -2,9 +2,11 @@ package command.remote_controlled_object.stereo.comand;
 
 import command.ICommand;
 import command.remote_controlled_object.stereo.Stereo;
+import command.remote_controlled_object.stereo.StereoMode;
 
 public class StereoOnWithCDCommand implements ICommand {
     private final Stereo stereo;
+    private StereoMode previousMode;
 
     public StereoOnWithCDCommand(Stereo stereo) {
         this.stereo = stereo;
@@ -12,6 +14,8 @@ public class StereoOnWithCDCommand implements ICommand {
 
     @Override
     public void execute() {
+        previousMode = stereo.getCurrentMode();
+
         stereo.on();
         stereo.setCd();
         stereo.setVolume(1);
@@ -21,6 +25,12 @@ public class StereoOnWithCDCommand implements ICommand {
     public void undo() {
         stereo.setVolume(0);
         stereo.off();
-        // Undo setCd ? : set to previous value -> need to save previous value
+
+        switch (previousMode) {
+            case STANDBY -> stereo.setStandBy();
+            case CD -> stereo.setCd();
+            case DVD -> stereo.setDvd();
+            case RADIO -> stereo.setRadio();
+        }
     }
 }

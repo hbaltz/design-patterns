@@ -4,18 +4,18 @@ import command.ICommand;
 import command.remote_controlled_object.ceiling_fan.CeilingFan;
 import command.remote_controlled_object.ceiling_fan.CeilingFanSpeed;
 
-public class CeilingFanOffCommand implements ICommand {
+public class CeilingFanHighCommand implements ICommand {
     private final CeilingFan ceilingFan;
     private CeilingFanSpeed previousSpeed;
 
-    public CeilingFanOffCommand(CeilingFan ceilingFan) {
+    public CeilingFanHighCommand(CeilingFan ceilingFan) {
         this.ceilingFan = ceilingFan;
     }
 
     @Override
     public void execute() {
         previousSpeed = ceilingFan.getSpeed();
-        ceilingFan.off();
+        ceilingFan.high();
     }
 
     @Override

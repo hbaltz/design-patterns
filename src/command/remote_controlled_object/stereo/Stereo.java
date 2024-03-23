@@ -28,6 +28,10 @@ public class Stereo {
         }
     }
 
+    public int getVolume() {
+        return volume;
+    }
+
     public void setCd() {
         currentMode = StereoMode.CD;
         System.out.println("The stereo in "+ location + " switch to cd mode!");
