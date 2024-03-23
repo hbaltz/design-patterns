@@ -3,22 +3,20 @@ package command.remote_controlled_object.garage_door.command;
 import command.ICommand;
 import command.remote_controlled_object.garage_door.GarageDoor;
 
-public class GarageDoorOpenCommand implements ICommand {
+public class GarageDoorCloseCommand implements ICommand {
     private final GarageDoor garageDoor;
 
-    public GarageDoorOpenCommand(GarageDoor garageDoor) {
+    public GarageDoorCloseCommand(GarageDoor garageDoor) {
         this.garageDoor = garageDoor;
     }
 
     @Override
     public void execute() {
-        garageDoor.up();
-        garageDoor.lightOn();
+        garageDoor.down();
     }
 
     @Override
     public void undo() {
-        garageDoor.lightOff();
-        garageDoor.down();
+        garageDoor.up();
     }
 }
