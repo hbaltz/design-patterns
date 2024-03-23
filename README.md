@@ -9,6 +9,7 @@ In this directory, I create examples of design pattern implementations, initiall
 * [Factory method pattern](./src/factory/README.md)
 * [Abstract factory pattern](./src/abstract_factory/README.md)
 * [Singleton pattern](./src/singleton/README.md)
+* [Command patter](./src/command/README.md)
 
 ## References
 
