@@ -11,6 +11,7 @@ In this directory, I create examples of design pattern implementations, initiall
 * [Singleton pattern](./src/singleton/README.md)
 * [Command pattern](./src/command/README.md)
 * [Adapter pattern](./src/adapter/README.md)
+* [Facade pattern](./src/facade/README.md)
 
 ## References
 
