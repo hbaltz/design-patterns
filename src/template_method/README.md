@@ -13,8 +13,9 @@ Template method lets subclasses redefine certain steps of an algorithm without c
 classDiagram
     class AbstractClass {
         + templateMethod() void
-        # primitiveOperation1() void
-        # primitiveOperation2() void
+        # abstract primitiveOperation1() void
+        # abstract primitiveOperation2() void
+        # hook() void
     }
     <<abstract>> AbstractClass
     
@@ -36,6 +37,8 @@ as well as the actual template method which calls these methods in a specific or
 * The template method make use of the `templateMethod` to implant an algorithm
 It is decoupled from the actual implementation of these operations. `templateMethod` are abstract methods
 * They may be many `ConcreteClass`, each implementing the full set of operations required by the template method.
+* You can `hooks` that are concrete method in the abstract class that do nothing, but are called in precise place in the
+  `template method`. Subclasses are free to overwrite these but don't have too.
 
 ### Other version of the template method
 
@@ -47,26 +50,26 @@ All the steps in the templateMethod can be rewritten by the subclasses. To be mo
 classDiagram
     class AbstractClass {
         + templateMethod() void
-        # step1() void
+        # concreteStep1() void
         # abstract step2() void
-        # step4() void
-        # step5() void
+        # concreteStep4() void
+        # concreteStep5() void
         # abstract step6() void
-        # step7() void
+        # concreteStep7() void
     }
     <<abstract>> AbstractClass
     
     class ConcreteClass1 {
-        # step1() void
+        # concreteStep1() void
         # step2() void
-        # step5() void
+        # concreteStep5() void
         # step6() void
     }
 
     class ConcreteClass2 {
         # step2() void
         # step6() void
-        # step7() void
+        # concreteStep7() void
     }
     
     AbstractClass <|-- ConcreteClass1
@@ -83,6 +86,9 @@ Template Method is a behavioral design pattern that defines the skeleton of an a
 but lets subclasses override specific steps of the algorithm without changing its structure.
 ```
 
+The `steps` that are concrete in the `abstract class` can be compare to the `hook` in the first diagram.
+But `hooks` are define to do 'nothing', while `concrete steps` define a default behavior in the `abstract class`.
+
 ## Starbuzz coffee example
 
 Our example implements the first version of this pattern (that seems to be the definition provides by the gang of four)
@@ -95,6 +101,7 @@ classDiagram
         # brew() void
         - pourInCup() void
         # addCondiments() void
+        # customerWantsCondiments() void
     }
     <<abstract>> CaffeineBeverage
     
@@ -120,6 +127,9 @@ In this example the way to prepare a recipe is to :
 The steps 1 and 3 are the same for all caffeine beverage, that are steps the subclass can't overwrite.  
 The steps 2 and 4 are specific to each beverage, these are the `primitiveOperation` that the subclass have
 to implement.
+
+If the hook `customerWantsCondiments` we can decide to had condiments or not (to call the step 4)
+regarding the customer choice
 
 ## Pros
 
