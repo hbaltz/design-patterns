@@ -12,6 +12,7 @@ In this directory, I create examples of design pattern implementations, initiall
 * [Command pattern](./src/command/README.md)
 * [Adapter pattern](./src/adapter/README.md)
 * [Facade pattern](./src/facade/README.md)
+* [Template method pattern](./src/template_method/README.md)
 
 ## References
 
