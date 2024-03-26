@@ -11,7 +11,9 @@ public abstract class CaffeineBeverage {
         boilWater();
         brew();
         pourInCup();
-        addCondiments();
+        if (customerWantsCondiments()) {
+            addCondiments();
+        }
     }
 
     /**
@@ -23,6 +25,14 @@ public abstract class CaffeineBeverage {
      * Specific method to add condiments to the beverage
      */
     protected abstract void addCondiments();
+
+    /**
+     * This is a hook used to define if a customer wants condiments or not
+     * @return true (default behaviour)
+     */
+    protected boolean customerWantsCondiments() {
+        return true;
+    }
 
     /**
      * Boils the water
