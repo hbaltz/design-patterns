@@ -136,6 +136,10 @@ regarding the customer choice
 * You can pull the duplicate code into a superclass. And maximizes reuse among subclasses
 * Protects the algorithm. It lives in one place, code changes only to be made here.
 * Concentrates the knowledge about the algorithm and relies on subclasses to provide complete implementations.
+* The Hollywood Principle : Don't call us, we'll call you. `AbstractClass` is our high-level component.
+It has the control over the algorithm, and calls subclass only when they're needed for an implementation of a method.
+The subclasses are used simply to provide implementation details. They never call the abstract class directly 
+without being "called" first.
 
 ## Cons
 
