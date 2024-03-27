@@ -142,6 +142,8 @@ We could have used the `Java.util.Iterator` interface and the concrete `Iterator
   and pass them to existing code without breaking anything.
 * You can iterate over the same aggregate in parallel because each iterator object contains its own iteration state.
 * For the same reason, you can delay an iteration and continue it when needed.
+* Places the task of traversal on the iterator object, not on the aggregate, 
+  which simplifies the aggregate interface and places rhe responsibility where it should be.
 
 ## Cons
 
