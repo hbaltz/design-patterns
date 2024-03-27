@@ -2,7 +2,7 @@ package iterator;
 
 import iterator.menu.diner.DinerMenu;
 import iterator.menu.pancake_house.PancakeHouseMenu;
-import iterator.menu.waitress.Waitress;
+import iterator.waitress.Waitress;
 
 
 public class ObjectvilleDinner {

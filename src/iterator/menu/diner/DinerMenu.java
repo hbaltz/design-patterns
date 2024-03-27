@@ -1,15 +1,14 @@
 package iterator.menu.diner;
 
 import iterator.Iterator;
+import iterator.menu.IMenu;
 import iterator.menu.diner.iterator.DinerMenuIterator;
 import iterator.menu.menu_item.MenuItem;
-
-import java.util.ArrayList;
 
 /**
  * The menu of a diner restaurant
  */
-public class DinerMenu {
+public class DinerMenu implements IMenu {
     /**
      * The diner want the max size of his menu
      * We don't want more than MAX_ITEMS items in his menu

@@ -1,6 +1,7 @@
 package iterator.menu.pancake_house;
 
 import iterator.Iterator;
+import iterator.menu.IMenu;
 import iterator.menu.menu_item.MenuItem;
 import iterator.menu.pancake_house.iterator.PancakeHouseIterator;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 /**
  * The menu of the pancake house restaurant
  */
-public class PancakeHouseMenu {
+public class PancakeHouseMenu implements IMenu {
     private final ArrayList<MenuItem> menuItemArrayList;
 
     public PancakeHouseMenu() {
