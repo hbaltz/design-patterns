@@ -1,31 +1,30 @@
-package iterator.menu.waitress;
+package iterator.waitress;
 
 import iterator.Iterator;
-import iterator.menu.diner.DinerMenu;
+import iterator.menu.IMenu;
 import iterator.menu.menu_item.MenuItem;
-import iterator.menu.pancake_house.PancakeHouseMenu;
 
 /**
  * Modeled a waitress in a restaurant that is composed of a pancake house and a diner
  */
 public class Waitress {
-    private final PancakeHouseMenu pancakeHouseMenu;
-    private final DinerMenu dinerMenu;
+    private final IMenu breakfastMenu;
+    private final IMenu lunchMenu;
 
-    public Waitress(PancakeHouseMenu pancakeHouseMenu, DinerMenu dinerMenu) {
-        this.pancakeHouseMenu = pancakeHouseMenu;
-        this.dinerMenu = dinerMenu;
+    public Waitress(IMenu breakfastMenu, IMenu lunchMenu) {
+        this.breakfastMenu = breakfastMenu;
+        this.lunchMenu = lunchMenu;
     }
 
     public void printMenu() {
-        Iterator<MenuItem> pancakeIterator = pancakeHouseMenu.createIterator();
-        Iterator<MenuItem> dinerIterator = dinerMenu.createIterator();
+        Iterator<MenuItem> breakfastMenuIterator = breakfastMenu.createIterator();
+        Iterator<MenuItem> lunchMenuIterator = lunchMenu.createIterator();
         System.out.println("BREAKFAST");
         printSeparator();
-        printMenuViaIterator(pancakeIterator);
+        printMenuViaIterator(breakfastMenuIterator);
         System.out.println("\nLUNCH");
         printSeparator();
-        printMenuViaIterator(dinerIterator);
+        printMenuViaIterator(lunchMenuIterator);
     }
 
     private void printMenuViaIterator(Iterator<MenuItem> menuItemIterator) {
