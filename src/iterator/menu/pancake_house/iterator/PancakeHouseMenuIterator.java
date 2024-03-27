@@ -5,11 +5,11 @@ import iterator.menu.menu_item.MenuItem;
 
 import java.util.ArrayList;
 
-public class PancakeHouseIterator implements Iterator<MenuItem> {
+public class PancakeHouseMenuIterator implements Iterator<MenuItem> {
     private final ArrayList<MenuItem> menuItemArrayList;
     private int position = 0;
 
-    public PancakeHouseIterator(ArrayList<MenuItem> menuItemArrayList) {
+    public PancakeHouseMenuIterator(ArrayList<MenuItem> menuItemArrayList) {
         this.menuItemArrayList = menuItemArrayList;
     }
 

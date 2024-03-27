@@ -3,7 +3,7 @@ package iterator.menu.pancake_house;
 import iterator.Iterator;
 import iterator.menu.IMenu;
 import iterator.menu.menu_item.MenuItem;
-import iterator.menu.pancake_house.iterator.PancakeHouseIterator;
+import iterator.menu.pancake_house.iterator.PancakeHouseMenuIterator;
 
 import java.util.ArrayList;
 
@@ -54,7 +54,7 @@ public class PancakeHouseMenu implements IMenu {
     }
 
     public Iterator<MenuItem> createIterator() {
-        return new PancakeHouseIterator(menuItemArrayList);
+        return new PancakeHouseMenuIterator(menuItemArrayList);
     }
 
     // Other method (example : editItem, removeItem)
