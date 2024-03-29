@@ -20,8 +20,9 @@ public class WinnerState implements  IGumballMachineState{
     }
 
     @Override
-    public void turnCrank() {
+    public boolean turnCrank() {
         System.out.println("Turning twice doesn't get you another gumball, but you already win an extra gumball");
+        return false;
     }
 
     @Override

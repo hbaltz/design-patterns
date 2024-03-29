@@ -20,8 +20,9 @@ public class SoldOutState implements IGumballMachineState {
     }
 
     @Override
-    public void turnCrank() {
+    public boolean turnCrank() {
         System.out.println("You turned but there are no gumball");
+        return false;
     }
 
     @Override

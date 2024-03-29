@@ -52,8 +52,9 @@ public class GumballMachine {
      * Manage what happened when we turn the crank of the machine regarding the state of the machine
      */
     public void turnCrank() {
-        currentState.turnCrank();
-        currentState.dispense();
+        if (currentState.turnCrank())  {
+            currentState.dispense();
+        }
     }
 
     /**
