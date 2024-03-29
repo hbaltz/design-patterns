@@ -15,6 +15,7 @@ In this directory, I create examples of design pattern implementations, initiall
 * [Template method pattern](./src/template_method/README.md)
 * [Iterator pattern](./src/iterator/README.md)
 * [Composite pattern](./src/composite/README.md)
+* [State patter](./src/state/README.md)
 
 ## References
 
