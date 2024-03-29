@@ -1,7 +1,6 @@
 package state;
 
 import state.gumball_machine.GumballMachine;
-import state.gumball_machine.GumballMachineState;
 
 /**
  * Modeled a mall with a gumball machine

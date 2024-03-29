@@ -1,10 +1,19 @@
 package state.gumball_machine;
 
+import state.gumball_machine.gumball_machine_state.*;
+
 /**
  * Modeled a gumball machine as a state machine
  */
 public class GumballMachine {
-    private GumballMachineState currentState = GumballMachineState.SOLD_OUT;
+    private final IGumballMachineState soldOutState;
+    private final IGumballMachineState noQuarterState;
+    private final IGumballMachineState hasQuarterState;
+    private final IGumballMachineState soldState;
+    private final  IGumballMachineState winnerState;
+
+    private IGumballMachineState currentState;
+
     private int count = 0;
 
     private final String name = "Java-enabled Standing Gumball Model #2024";
@@ -13,65 +22,87 @@ public class GumballMachine {
      * @param initialNumberOfGumball the number of gumball in the machine. The initial inventory.
      */
     public GumballMachine(int initialNumberOfGumball) {
+        soldOutState = new SoldOutState(this);
+        noQuarterState = new NoQuarterState(this);
+        hasQuarterState = new HasQuarterState(this);
+        soldState = new SoldState(this);
+        winnerState = new WinnerState(this);
+
+        currentState = soldOutState;
+
         fill(initialNumberOfGumball);
     }
+
 
     /**
      * Manage what happened when we insert a quarter regarding the state of the machine
      */
     public void insertQuarter() {
-        switch (currentState) {
-            case SOLD_OUT -> System.out.println("You can't insert a quarter, the machine is sold out");
-            case NO_QUARTER -> {
-                currentState = GumballMachineState.HAS_QUARTER;
-                System.out.println("You inserted a quarter!");
-            }
-            case HAS_QUARTER -> System.out.println("You can't insert another coin");
-            case SOLD -> System.out.println("Please wait, we're already gibing you a gumball");
-        }
+      currentState.insertQuarter();
     }
 
     /**
      * Manage what happened when we eject a quarter regarding the state of the machine
      */
     public void ejectQuarter() {
-        switch (currentState) {
-            case SOLD_OUT -> System.out.println("You can't eject a quarter, you haven't insert a quarter yet");
-            case NO_QUARTER -> System.out.println("You haven't inserted a quarter!");
-            case HAS_QUARTER -> {
-                currentState = GumballMachineState.NO_QUARTER;
-                System.out.println("Quarter returned");
-            }
-            case SOLD -> System.out.println("Sorry, you have already turned the crank");
-        }
+        currentState.ejectQuarter();
     }
 
     /**
      * Manage what happened when we turn the crank of the machine regarding the state of the machine
      */
     public void turnCrank() {
-        switch (currentState) {
-            case SOLD_OUT -> System.out.println("You turned but there are no gumball");
-            case NO_QUARTER -> System.out.println("You turned but there is no quarter");
-            case HAS_QUARTER -> {
-                System.out.println("Your turned");
-                currentState = GumballMachineState.SOLD;
-                dispense();
-            }
-            case SOLD -> System.out.println("Turning twice doesn't get you another gumball");
-        }
+        currentState.turnCrank();
+        currentState.dispense();
     }
 
     /**
      * @param numberOfGumball number of gumball add in the machine
      */
     public void fill(int numberOfGumball) {
-        // To be sure the number of ball is positive, it has no sense to have a negative number
-        count = Math.max(numberOfGumball, 0);
-        // We only change the state if the machine was sod out else the state stay the same
-        if (count > 0 && currentState == GumballMachineState.SOLD_OUT) {
-            currentState = GumballMachineState.NO_QUARTER;
+        if (numberOfGumball > 0) {
+            // To be sure the number of ball is positive, it has no sense to fill a negative number in your case
+            count += numberOfGumball;
+            currentState.fill();
         }
+    }
+
+    /**
+     * Helper method to release a ball and update the count
+     */
+    public void releaseBall() {
+        if (count != 0) {
+            System.out.println("A gumball comes rolling out of the slot...");
+            count -= 1;
+        }
+    }
+
+    public void setState(IGumballMachineState state) {
+        currentState = state;
+    }
+
+    public IGumballMachineState getSoldOutState() {
+        return soldOutState;
+    }
+
+    public IGumballMachineState getNoQuarterState() {
+        return noQuarterState;
+    }
+
+    public IGumballMachineState getHasQuarterState() {
+        return hasQuarterState;
+    }
+
+    public IGumballMachineState getSoldState() {
+        return soldState;
+    }
+
+    public IGumballMachineState getWinnerState() {
+        return winnerState;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     @Override
@@ -80,26 +111,5 @@ public class GumballMachine {
                 "currentState=" + currentState +
                 ", count=" + count +
                 '}';
-    }
-
-    /**
-     * Dispense a gumball if we are in the right state (the gumball has benn sold)
-     */
-    private void dispense() {
-        switch (currentState) {
-            case SOLD_OUT -> System.out.println("No gumball, we are out of stock!");
-            case NO_QUARTER -> System.out.println("You need to pay first");
-            case HAS_QUARTER -> System.out.println("You need to turn the crank to buy a gumball");
-            case SOLD -> {
-                System.out.println("A gumball comes rolling out of the slot");
-                count -= 1;
-                if (count == 0) {
-                    System.out.println("Oops, we are now out of gumballs!");
-                    currentState = GumballMachineState.SOLD_OUT;
-                } else {
-                    currentState = GumballMachineState.NO_QUARTER;
-                }
-            }
-        }
     }
 }
