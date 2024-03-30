@@ -16,6 +16,7 @@ In this directory, I create examples of design pattern implementations, initiall
 * [Iterator pattern](./src/iterator/README.md)
 * [Composite pattern](./src/composite/README.md)
 * [State patter](./src/state/README.md)
+* [Proxy pattern](./src/proxy/README.md)
 
 ## References
 
