@@ -1,0 +1,3 @@
+[submodule "compoud-design-pattern"]
+	path = compoud-design-pattern
+	url = https://github.com/hbaltz/compoud-design-pattern.git
